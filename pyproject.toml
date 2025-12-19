@@ -1,0 +1,66 @@
+[tool.poetry]
+name = "nodo-x402-protocol"
+version = "0.1.0"
+description = "AI Market Analysis API with x402 Payment Protocol on Solana"
+authors = ["NODO AI <dev@nodo.ai>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/nodo-ai/nodo-x402-protocol"
+repository = "https://github.com/nodo-ai/nodo-x402-protocol"
+keywords = ["x402", "solana", "ai", "prediction-markets", "micropayments"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.109.0"
+uvicorn = {extras = ["standard"], version = "^0.27.0"}
+pydantic = "^2.5.0"
+pydantic-settings = "^2.1.0"
+solana = "^0.32.0"
+solders = "^0.20.0"
+spl-token = "^0.2.0"
+httpx = "^0.26.0"
+python-dotenv = "^1.0.0"
+redis = "^5.0.1"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+pytest-asyncio = "^0.23.0"
+pytest-cov = "^4.1.0"
+pytest-mock = "^3.12.0"
+black = "^24.0.0"
+ruff = "^0.1.0"
+mypy = "^1.8.0"
+isort = "^5.13.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+include = '\.pyi?$'
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+select = ["E", "F", "W", "I", "N", "UP", "B", "A", "C4", "SIM"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v --cov=src --cov-report=html --cov-report=term"
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
